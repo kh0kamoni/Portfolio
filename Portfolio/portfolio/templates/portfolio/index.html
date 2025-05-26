@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jordan Lee | Security Researcher</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        professional: {
+                            primary: '#2563eb',  // Navy blue
+                            secondary: '#1e40af', // Darker blue
+                            accent: '#dc2626',   // Crimson red
+                            light: '#f3f4f6',    // Light gray
+                            dark: '#111827'      // Dark gray
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['"Fira Code"', 'monospace'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/css">
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #374151;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #2563eb;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .card-hover {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .badge {
+            font-family: 'Fira Code', monospace;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Header -->
+        <header class="mb-12">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8">
+                <div>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-2 text-professional-dark">
+                        Jordan Lee
+                    </h1>
+                    <p class="text-professional-primary text-lg font-medium">
+                        Security Researcher | Vulnerability Hunter | CS Undergrad
+                    </p>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <a href="mailto:jordan@security-research.io" class="bg-professional-primary hover:bg-professional-secondary text-white px-4 py-2 rounded-md transition-all duration-300 inline-flex items-center shadow-sm">
+                        <i class="fas fa-envelope mr-2"></i> Contact Me
+                    </a>
+                </div>
+            </div>
+            
+            <nav class="flex flex-wrap gap-6 border-b border-professional-light pb-4">
+                <a href="#about" class="nav-link text-professional-primary hover:text-professional-dark font-medium">About</a>
+                <a href="#research" class="nav-link text-professional-primary hover:text-professional-dark font-medium">Research</a>
+                <a href="#cves" class="nav-link text-professional-primary hover:text-professional-dark font-medium">CVEs</a>
+                <a href="#projects" class="nav-link text-professional-primary hover:text-professional-dark font-medium">Projects</a>
+                <a href="#publications" class="nav-link text-professional-primary hover:text-professional-dark font-medium">Publications</a>
+                <a href="#contact" class="nav-link text-professional-primary hover:text-professional-dark font-medium">Contact</a>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- About Section -->
+            <section id="about" class="mb-16">
+                <h2 class="text-3xl font-bold mb-6 text-professional-dark flex items-center">
+                    <span class="w-4 h-4 bg-professional-primary rounded-full mr-3"></span>
+                    About Me
+                </h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2">
+                        <p class="mb-4 leading-relaxed text-gray-700">
+                            Computer Science undergraduate specializing in cybersecurity with a focus on web application security, 
+                            network protocol analysis, and malware reverse engineering. Passionate about discovering and responsibly 
+                            disclosing vulnerabilities in modern software systems.
+                        </p>
+                        <p class="leading-relaxed text-gray-700">
+                            Currently conducting independent security research while completing my BS in Computer Science at 
+                            University of Technology, with multiple CVEs discovered and papers submitted to top-tier security 
+                            conferences.
+                        </p>
+                        
+                        <div class="mt-8 bg-professional-light p-6 rounded-lg border-l-4 border-professional-primary shadow-sm">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-search text-professional-accent mr-3"></i>
+                                <h3 class="text-xl font-semibold text-professional-dark">Research Focus Areas</h3>
+                            </div>
+                            <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <li class="flex items-center text-gray-700">
+                                    <i class="fas fa-angle-right text-professional-primary mr-2 text-xs"></i>
+                                    Web Application Security
+                                </li>
+                                <li class="flex items-center text-gray-700">
+                                    <i class="fas fa-angle-right text-professional-primary mr-2 text-xs"></i>
+                                    Network Protocol Analysis
+                                </li>
+                                <li class="flex items-center text-gray-700">
+                                    <i class="fas fa-angle-right text-professional-primary mr-2 text-xs"></i>
+                                    Malware Reverse Engineering
+                                </li>
+                                <li class="flex items-center text-gray-700">
+                                    <i class="fas fa-angle-right text-professional-primary mr-2 text-xs"></i>
+                                    Cryptographic Implementations
+                                </li>
+                                <li class="flex items-center text-gray-700">
+                                    <i class="fas fa-angle-right text-professional-primary mr-2 text-xs"></i>
+                                    Cloud Security Configurations
+                                </li>
+                                <li class="flex items-center text-gray-700">
+                                    <i class="fas fa-angle-right text-professional-primary mr-2 text-xs"></i>
+                                    Automated Vulnerability Discovery
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col items-center">
+                        <div class="w-48 h-48 bg-gray-100 rounded-full mb-4 overflow-hidden border-4 border-professional-light shadow-md">
+                            <!-- Placeholder for profile image -->
+                            <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+                                <i class="fas fa-user-shield text-5xl text-professional-primary"></i>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h3 class="text-xl font-semibold mb-2 text-professional-dark">Jordan Lee</h3>
+                            <p class="text-sm mb-4 text-gray-600">Security Researcher</p>
+                            <div class="flex justify-center space-x-4">
+                                <a href="#" class="text-professional-primary hover:text-professional-secondary">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="text-professional-primary hover:text-professional-secondary">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="text-professional-primary hover:text-professional-secondary">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="#" class="text-professional-primary hover:text-professional-secondary">
+                                    <i class="fas fa-file-pdf"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Research Section -->
+            <section id="research" class="mb-16">
+                <h2 class="text-3xl font-bold mb-6 text-professional-dark flex items-center">
+                    <span class="w-4 h-4 bg-professional-primary rounded-full mr-3"></span>
+                    Research Highlights
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-lg border-l-4 border-professional-primary shadow-sm card-hover">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-professional-light p-2 rounded-lg mr-3">
+                                <i class="fas fa-lock text-professional-primary"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-professional-dark">Web Security</h3>
+                        </div>
+                        <p class="mb-4 text-gray-700">
+                            Researching novel attack vectors in modern web frameworks and developing automated tools 
+                            for detecting insecure implementations of authentication protocols.
+                        </p>
+                        <div class="text-sm">
+                            <span class="badge bg-professional-light text-professional-primary px-2 py-1 rounded mr-2">OWASP Top 10</span>
+                            <span class="badge bg-professional-light text-professional-primary px-2 py-1 rounded">JWT Security</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg border-l-4 border-professional-accent shadow-sm card-hover">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-professional-light p-2 rounded-lg mr-3">
+                                <i class="fas fa-network-wired text-professional-primary"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-professional-dark">Network Security</h3>
+                        </div>
+                        <p class="mb-4 text-gray-700">
+                            Analyzing security implications of emerging network protocols with focus on QUIC/HTTP3 
+                            implementations and their susceptibility to timing attacks.
+                        </p>
+                        <div class="text-sm">
+                            <span class="badge bg-professional-light text-professional-primary px-2 py-1 rounded mr-2">QUIC</span>
+                            <span class="badge bg-professional-light text-professional-primary px-2 py-1 rounded">TLS 1.3</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg border-l-4 border-professional-primary shadow-sm card-hover">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-professional-light p-2 rounded-lg mr-3">
+                                <i class="fas fa-bug text-professional-primary"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-professional-dark">Malware Analysis</h3>
+                        </div>
+                        <p class="mb-4 text-gray-700">
+                            Developing machine learning models for classifying malware families based on behavioral 
+                            patterns and evasion techniques observed in modern ransomware.
+                        </p>
+                        <div class="text-sm">
+                            <span class="badge bg-professional-light text-professional-primary px-2 py-1 rounded mr-2">PE Analysis</span>
+                            <span class="badge bg-professional-light text-professional-primary px-2 py-1 rounded">API Calls</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg border-l-4 border-professional-accent shadow-sm card-hover">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-professional-light p-2 rounded-lg mr-3">
+                                <i class="fas fa-key text-professional-primary"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-professional-dark">Cryptography</h3>
+                        </div>
+                        <p class="mb-4 text-gray-700">
+                            Investigating side-channel vulnerabilities in cryptographic implementations and 
+                            developing secure alternatives for constrained environments.
+                        </p>
+                        <div class="text-sm">
+                            <span class="badge bg-professional-light text-professional-primary px-2 py-1 rounded mr-2">PQC</span>
+                            <span class="badge bg-professional-light text-professional-primary px-2 py-1 rounded">Side Channels</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CVEs Section -->
+            <section id="cves" class="mb-16">
+                <h2 class="text-3xl font-bold mb-6 text-professional-dark flex items-center">
+                    <span class="w-4 h-4 bg-professional-primary rounded-full mr-3"></span>
+                    Published CVEs
+                </h2>
+                
+                <div class="overflow-x-auto bg-white rounded-lg shadow-sm border border-gray-100">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-professional-light">
+                            <tr>
+                                <th class="py-3 px-4 text-left text-sm font-semibold text-professional-dark">CVE ID</th>
+                                <th class="py-3 px-4 text-left text-sm font-semibold text-professional-dark">Vulnerability</th>
+                                <th class="py-3 px-4 text-left text-sm font-semibold text-professional-dark">Affected Product</th>
+                                <th class="py-3 px-4 text-left text-sm font-semibold text-professional-dark">Severity</th>
+                                <th class="py-3 px-4 text-left text-sm font-semibold text-professional-dark">Year</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            <tr class="hover:bg-professional-light/50">
+                                <td class="py-3 px-4 font-mono text-sm">
+                                    <a href="#" class="text-professional-accent hover:underline font-medium">CVE-2023-12345</a>
+                                </td>
+                                <td class="py-3 px-4 text-sm text-gray-700">SSRF in API Gateway</td>
+                                <td class="py-3 px-4 text-sm text-gray-700">Popular Web Framework</td>
+                                <td class="py-3 px-4">
+                                    <span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs font-medium">Critical</span>
+                                </td>
+                                <td class="py-3 px-4 text-sm text-gray-700">2023</td>
+                            </tr>
+                            <tr class="hover:bg-professional-light/50">
+                                <td class="py-3 px-4 font-mono text-sm">
+                                    <a href="#" class="text-professional-accent hover:underline font-medium">CVE-2023-23456</a>
+                                </td>
+                                <td class="py-3 px-4 text-sm text-gray-700">RCE via Deserialization</td>
+                                <td class="py-3 px-4 text-sm text-gray-700">Enterprise Software</td>
+                                <td class="py-3 px-4">
+                                    <span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs font-medium">Critical</span>
+                                </td>
+                                <td class="py-3 px-4 text-sm text-gray-700">2023</td>
+                            </tr>
+                            <tr class="hover:bg-professional-light/50">
+                                <td class="py-3 px-4 font-mono text-sm">
+                                    <a href="#" class="text-professional-accent hover:underline font-medium">CVE-2022-34567</a>
+                                </td>
+                                <td class="py-3 px-4 text-sm text-gray-700">Authentication Bypass</td>
+                                <td class="py-3 px-4 text-sm text-gray-700">Cloud Platform</td>
+                                <td class="py-3 px-4">
+                                    <span class="px-2 py-1 bg-orange-100 text-orange-800 rounded-full text-xs font-medium">High</span>
+                                </td>
+                                <td class="py-3 px-4 text-sm text-gray-700">2022</td>
+                            </tr>
+                            <tr class="hover:bg-professional-light/50">
+                                <td class="py-3 px-4 font-mono text-sm">
+                                    <a href="#" class="text-professional-accent hover:underline font-medium">CVE-2022-45678</a>
+                                </td>
+                                <td class="py-3 px-4 text-sm text-gray-700">Information Disclosure</td>
+                                <td class="py-3 px-4 text-sm text-gray-700">Mobile Application</td>
+                                <td class="py-3 px-4">
+                                    <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-medium">Medium</span>
+                                </td>
+                                <td class="py-3 px-4 text-sm text-gray-700">2022</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="mb-16">
+                <h2 class="text-3xl font-bold mb-6 text-professional-dark flex items-center">
+                    <span class="w-4 h-4 bg-professional-primary rounded-full mr-3"></span>
+                    Research Projects
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-sm card-hover border border-gray-100">
+                        <div class="flex items-start mb-4">
+                            <div class="bg-professional-light p-3 rounded-lg mr-4">
+                                <i class="fas fa-shield-alt text-professional-primary"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-professional-dark mb-2">SecureAuth Analyzer</h3>
+                                <p class="text-sm mb-3 text-gray-700">
+                                    Automated tool for testing authentication implementations against common vulnerabilities 
+                                    including session fixation, weak password policies, and JWT implementation flaws.
+                                </p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="badge text-xs bg-professional-light text-professional-primary px-2 py-1 rounded">Python</span>
+                                    <span class="badge text-xs bg-professional-light text-professional-primary px-2 py-1 rounded">OWASP</span>
+                                    <span class="badge text-xs bg-professional-light text-professional-primary px-2 py-1 rounded">JWT</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-sm card-hover border border-gray-100">
+                        <div class="flex items-start mb-4">
+                            <div class="bg-professional-light p-3 rounded-lg mr-4">
+                                <i class="fas fa-virus text-professional-primary"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-professional-dark mb-2">MalwareDNA</h3>
+                                <p class="text-sm mb-3 text-gray-700">
+                                    Machine learning pipeline for classifying malware samples based on behavioral patterns 
+                                    extracted from API call sequences and network traffic analysis.
+                                </p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="badge text-xs bg-professional-light text-professional-primary px-2 py-1 rounded">Python</span>
+                                    <span class="badge text-xs bg-professional-light text-professional-primary px-2 py-1 rounded">TensorFlow</span>
+                                    <span class="badge text-xs bg-professional-light text-professional-primary px-2 py-1 rounded">Cuckoo Sandbox</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-sm card-hover border border-gray-100">
+                        <div class="flex items-start mb-4">
+                            <div class="bg-professional-light p-3 rounded-lg mr-4">
+                                <i class="fas fa-project-diagram text-professional-primary"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-professional-dark mb-2">QUIC-Fuzz</h3>
+                                <p class="text-sm mb-3 text-gray-700">
+                                    Custom fuzzer for QUIC protocol implementations focusing on stateful fuzzing approaches 
+                                    to uncover vulnerabilities in connection establishment and flow control mechanisms.
+                                </p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="badge text-xs bg-professional-light text-professional-primary px-2 py-1 rounded">Rust</span>
+                                    <span class="badge text-xs bg-professional-light text-professional-primary px-2 py-1 rounded">AFL++</span>
+                                    <span class="badge text-xs bg-professional-light text-professional-primary px-2 py-1 rounded">QUIC</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-sm card-hover border border-gray-100">
+                        <div class="flex items-start mb-4">
+                            <div class="bg-professional-light p-3 rounded-lg mr-4">
+                                <i class="fas fa-lock-open text-professional-primary"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-professional-dark mb-2">CryptoGuard</h3>
+                                <p class="text-sm mb-3 text-gray-700">
+                                    Static analysis tool for detecting insecure cryptographic implementations in source code, 
+                                    with focus on side-channel vulnerabilities and weak algorithm usage.
+                                </p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="badge text-xs bg-professional-light text-professional-primary px-2 py-1 rounded">Java</span>
+                                    <span class="badge text-xs bg-professional-light text-professional-primary px-2 py-1 rounded">LLVM</span>
+                                    <span class="badge text-xs bg-professional-light text-professional-primary px-2 py-1 rounded">Cryptography</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Publications Section -->
+            <section id="publications" class="mb-16">
+                <h2 class="text-3xl font-bold mb-6 text-professional-dark flex items-center">
+                    <span class="w-4 h-4 bg-professional-primary rounded-full mr-3"></span>
+                    Research Publications
+                </h2>
+                
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-lg border-l-4 border-professional-primary shadow-sm">
+                        <h3 class="text-xl font-semibold text-professional-dark mb-2">
+                            "Automated Detection of SSRF Vulnerabilities in Modern Web Frameworks"
+                        </h3>
+                        <p class="text-sm text-gray-500 mb-3">
+                            <span class="font-semibold text-professional-dark">Submitted to</span> IEEE Symposium on Security and Privacy 2024
+                        </p>
+                        <p class="mb-4 text-gray-700">
+                            Presents a novel static analysis approach combined with dynamic probing to detect Server-Side Request 
+                            Forgery (SSRF) vulnerabilities in modern web frameworks with high accuracy.
+                        </p>
+                        <a href="#" class="inline-flex items-center text-professional-accent hover:text-professional-secondary text-sm font-medium">
+                            <i class="fas fa-file-pdf mr-2"></i> Preprint Available
+                        </a>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg border-l-4 border-professional-accent shadow-sm">
+                        <h3 class="text-xl font-semibold text-professional-dark mb-2">
+                            "Behavioral Fingerprinting of Ransomware Families Using API Call Sequences"
+                        </h3>
+                        <p class="text-sm text-gray-500 mb-3">
+                            <span class="font-semibold text-professional-dark">Submitted to</span> ACM Conference on Computer and Communications Security (CCS) 2023
+                        </p>
+                        <p class="mb-4 text-gray-700">
+                            Introduces a machine learning model that classifies ransomware families with 94% accuracy based on 
+                            behavioral patterns observed during dynamic analysis.
+                        </p>
+                        <a href="#" class="inline-flex items-center text-professional-accent hover:text-professional-secondary text-sm font-medium">
+                            <i class="fas fa-file-pdf mr-2"></i> Preprint Available
+                        </a>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg border-l-4 border-professional-primary shadow-sm">
+                        <h3 class="text-xl font-semibold text-professional-dark mb-2">
+                            "Security Analysis of QUIC Implementations: A Fuzzing Approach"
+                        </h3>
+                        <p class="text-sm text-gray-500 mb-3">
+                            <span class="font-semibold text-professional-dark">Published in</span> USENIX Security Symposium 2023
+                        </p>
+                        <p class="mb-4 text-gray-700">
+                            Details vulnerabilities discovered in five major QUIC implementations using a custom stateful 
+                            fuzzing framework, leading to multiple CVEs.
+                        </p>
+                        <a href="#" class="inline-flex items-center text-professional-accent hover:text-professional-secondary text-sm font-medium">
+                            <i class="fas fa-file-pdf mr-2"></i> Download PDF
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="mb-16">
+                <h2 class="text-3xl font-bold mb-6 text-professional-dark flex items-center">
+                    <span class="w-4 h-4 bg-professional-primary rounded-full mr-3"></span>
+                    Get In Touch
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <p class="mb-6 text-gray-700">
+                            Interested in collaborating on security research or want to discuss potential opportunities? 
+                            Feel free to reach out through any of the channels below.
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="bg-professional-light p-3 rounded-lg mr-4">
+                                    <i class="fas fa-envelope text-professional-primary"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-professional-dark mb-1">Email</h3>
+                                    <a href="mailto:jordan@security-research.io" class="text-gray-700 hover:text-professional-primary">jordan@security-research.io</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-professional-light p-3 rounded-lg mr-4">
+                                    <i class="fab fa-github text-professional-primary"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-professional-dark mb-1">GitHub</h3>
+                                    <a href="https://github.com/jordan-sec" target="_blank" class="text-gray-700 hover:text-professional-primary">github.com/jordan-sec</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-professional-light p-3 rounded-lg mr-4">
+                                    <i class="fab fa-twitter text-professional-primary"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-professional-dark mb-1">Twitter</h3>
+                                    <a href="https://twitter.com/jordan_research" target="_blank" class="text-gray-700 hover:text-professional-primary">@jordan_research</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-professional-light p-3 rounded-lg mr-4">
+                                    <i class="fab fa-linkedin text-professional-primary"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-professional-dark mb-1">LinkedIn</h3>
+                                    <a href="https://linkedin.com/in/jordan-lee-sec" target="_blank" class="text-gray-700 hover:text-professional-primary">linkedin.com/in/jordan-lee-sec</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                        <h3 class="text-xl font-semibold text-professional-dark mb-4">Send a Direct Message</h3>
+                        <form>
+                            <div class="mb-4">
+                                <label for="name" class="block text-sm font-medium mb-1 text-gray-700">Name</label>
+                                <input type="text" id="name" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-professional-primary focus:border-professional-primary">
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block text-sm font-medium mb-1 text-gray-700">Email</label>
+                                <input type="email" id="email" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-professional-primary focus:border-professional-primary">
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="block text-sm font-medium mb-1 text-gray-700">Message</label>
+                                <textarea id="message" rows="4" class="w-full bg-white border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-professional-primary focus:border-professional-primary"></textarea>
+                            </div>
+                            <button type="submit" class="bg-professional-primary hover:bg-professional-secondary text-white font-semibold py-2 px-4 rounded-md transition-all duration-300 shadow-sm">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="border-t border-gray-200 pt-8 text-center text-sm text-gray-500">
+            <div class="mb-4">
+                <p class="font-mono text-professional-dark">
+                    <span class="text-professional-primary">//</span> Security through transparency and rigorous analysis
+                </p>
+            </div>
+            <p>© 2023 Jordan Lee. All rights reserved.</p>
+            <p class="mt-2">PGP Key: <span class="font-mono text-professional-primary">0x1A2B3C4D5E6F7890</span></p>
+        </footer>
+    </div>
+</body>
+</html>
